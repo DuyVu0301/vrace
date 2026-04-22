@@ -1,0 +1,54 @@
+# FSS Race - Running Competition Platform
+
+FSS Race là nền tảng quản lý và tổ chức các cuộc thi chạy bộ, tích hợp dữ liệu từ Strava để theo dõi thành tích của các vận động viên. Dự án sử dụng mô hình Client-Server hiện đại với khả năng phân quyền và bảo mật cao.
+
+## 🚀 Công nghệ sử dụng
+
+### Backend
+* **Node.js & Express**: Runtime và Framework xây dựng Server.
+* **MySQL**: Hệ quản trị cơ sở dữ liệu.
+* **JSON Web Token (JWT)**: Cơ chế xác thực và phân quyền.
+* **Bcrypt.js**: Mã hóa mật khẩu người dùng.
+* **Dotenv**: Quản lý biến môi trường.
+
+### Frontend
+* **React (Vite)**: Thư viện xây dựng giao diện người dùng.
+* **Zustand**: Quản lý trạng thái ứng dụng (State management).
+* **Tailwind CSS**: Framework CSS giúp tối ưu giao diện.
+* **Axios**: Xử lý HTTP requests với Interceptors.
+* **React Router Dom**: Quản lý điều hướng ứng dụng.
+
+## 🛠️ Tính năng hiện tại
+- [x] **Xác thực người dùng**: Đăng ký, Đăng nhập với JWT.
+- [x] **Phân quyền (Role-based)**: Tự động điều hướng giữa giao diện Admin và User.
+- [x] **Bảo mật**: Middleware kiểm tra Token cho các Private Routes.
+- [x] **Quản lý phiên**: Tự động Logout và xóa LocalStorage khi Token hết hạn.
+
+## 📋 Cấu trúc thư mục (Tóm tắt)
+```text
+├── backend/
+│   ├── config/          # Cấu hình Database
+│   ├── controllers/     # Xử lý logic API
+│   ├── middleware/      # Auth & Role checks
+│   ├── routes/          # Định nghĩa các endpoint
+│   └── server.js        # Entry point của server
+├── frontend/
+│   ├── src/
+│   │   ├── api/         # Axios instance
+│   │   ├── components/  # Shared components (ProtectedRoute...)
+│   │   ├── pages/       # Giao diện chính (Admin, Dashboard...)
+│   │   └── store/       # Zustand store (authStore.js)⚙️ Hướng dẫn cài đặt
+Clone dự án:
+git clone [https://github.com/DuyVu0301/FSS_Race.git](https://github.com/DuyVu0301/FSS_Race.git)
+cd FSS_Race
+
+Cài đặt Backend:
+cd backend
+npm install
+# Tạo file .env từ .env.example và điền thông tin DB của bạn
+npm start
+
+Cài đặt Frontend:
+cd frontend
+npm install
+npm run dev
