@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import { authMiddleware, checkRole } from "./middleware/authMiddleware.js";
+import raceRoutes from "./routes/raceRoutes.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/races", raceRoutes);
 
 app.get("/api/dashboard", authMiddleware, (req, res) => {
   res.json({ message: "Welcome to dashboard", user: req.user });

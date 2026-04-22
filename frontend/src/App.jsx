@@ -7,9 +7,10 @@ import {
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import DashboardPage from "./pages/DashboardPage";
+import DashboardPage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
 import "tailwindcss";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <DashboardPage />
+              <HomePage />
             </ProtectedRoute>
           }
         />
