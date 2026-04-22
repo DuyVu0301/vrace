@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
-const useAuthStore = create((set) => ({
+// 1. Thêm từ khóa 'export' vào trước 'const'
+export const useAuthStore = create((set) => ({
   token: localStorage.getItem("token") || null,
   user: localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
@@ -24,4 +25,4 @@ const useAuthStore = create((set) => ({
   },
 }));
 
-export default useAuthStore;
+// 2. Xóa dòng 'export default useAuthStore;' ở cuối file nếu còn

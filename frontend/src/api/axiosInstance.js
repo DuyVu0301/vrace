@@ -1,5 +1,5 @@
 import axios from "axios";
-import useAuthStore from "../store/authStore";
+import { useAuthStore } from "../store/authStore";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000/api",

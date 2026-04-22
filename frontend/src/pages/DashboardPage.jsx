@@ -1,51 +1,58 @@
-import { useNavigate } from "react-router-dom";
-import useAuthStore from "../store/authStore";
+import React from "react";
+import { useAuthStore } from "../store/authStore";
+import { UserStatsCard } from "../components/UserStatsCard";
+import StravaConnect from "../components/StravaConnect";
 
 const DashboardPage = () => {
-  const navigate = useNavigate();
-  const { user, logout } = useAuthStore();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  const { user } = useAuthStore();
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <nav className="bg-gray-800 border-b border-gray-700 p-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded transition"
-          >
-            Logout
-          </button>
+    <div className="max-w-7xl mx-auto py-10 px-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+        <div>
+          <h1 className="text-3xl font-bold text-navy-900 text-indigo-900">
+            Chào mừng, {user?.username}!
+          </h1>
+          <p className="text-gray-500">Hôm nay bạn sẽ chạy bao nhiêu km?</p>
         </div>
-      </nav>
+        {!user?.strava_id && <StravaConnect />}
+      </div>
 
-      <div className="max-w-7xl mx-auto p-8">
-        <div className="bg-gray-800 rounded-lg shadow-xl p-8">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Welcome, {user?.username}!
-          </h2>
-          <p className="text-gray-300 mb-4">
-            You are logged in as a{" "}
-            <span className="font-semibold text-blue-400">{user?.role}</span>.
-          </p>
+      {/* Sử dụng UserStatsCard mới tạo */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        <UserStatsCard
+          label="Tổng quãng đường"
+          value="125.4"
+          unit="km"
+          icon="🏃‍♂️"
+          colorClass="text-orange-500 bg-orange-500"
+        />
+        <UserStatsCard
+          label="Số giải đã xong"
+          value="3"
+          unit="giải"
+          icon="🏆"
+          colorClass="text-blue-600 bg-blue-600"
+        />
+        <UserStatsCard
+          label="Pace trung bình"
+          value="6:45"
+          unit="min/km"
+          icon="⚡"
+          colorClass="text-green-500 bg-green-500"
+        />
+        <UserStatsCard
+          label="Calo tiêu thụ"
+          value="4,200"
+          unit="kcal"
+          icon="🔥"
+          colorClass="text-red-500 bg-red-500"
+        />
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            <div className="bg-gray-700 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Profile</h3>
-              <p className="text-gray-300">Email: {user?.email}</p>
-            </div>
-
-            <div className="bg-gray-700 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Stats</h3>
-              <p className="text-gray-300">Account Status: Active</p>
-            </div>
-          </div>
-        </div>
+      <h2 className="text-2xl font-bold mb-6">Giải đấu bạn tham gia</h2>
+      <div className="bg-white rounded-3xl shadow-sm p-8 border border-gray-100">
+        <p className="text-gray-400 italic">Bạn chưa đăng ký giải đấu nào.</p>
       </div>
     </div>
   );
